@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: Products.Members2FSD
+Version: 1.0dev
+Summary: A starting point for product development
+Home-page: http://it.dss.ucdavis.edu/
+Author: CMcstone, DSSIT, UCDavis
+Author-email: cbeck@ucdavis.edu
+License: GPL
+Description: Description
+            Product to convert members to FSD.
+        
+        Changelog
+        ============
+        
+        1.0 (Unreleased)
+        -----------------
+        * Product created from scratch
+        
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

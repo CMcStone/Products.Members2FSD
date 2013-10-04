@@ -1,0 +1,17 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="Products.Members2FSD">
+		   
+   <utility provides=".interfaces.IMemberConverter"
+             factory=".Extensions.plone_to_facstaffdir.memberConverter" />
+		   
+
+   <genericsetup:registerProfile
+        name="default"
+        title="Members2FSD"
+        directory="profiles/default"
+        description="import members into FSD"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+</configure>

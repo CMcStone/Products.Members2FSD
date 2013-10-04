@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- This file holds the setup configuration for the portal_skins tool -->
+
+<object name="portal_skins">
+
+ <object name="mindbrain_scripts"
+    meta_type="Filesystem Directory View"
+    directory="Products.Members2FSD:skins/mindbrain_scripts"/>
+
+ <skin-path name="*">
+  <layer name="mindbrain_scripts"
+     insert-after="custom"/>
+ </skin-path>
+
+ <object name="mindbrain_templates"
+    meta_type="Filesystem Directory View"
+    directory="Products.Members2FSD:skins/mindbrain_templates"/>
+
+ <skin-path name="*">
+  <layer name="mindbrain_templates"
+     insert-after="custom"/>
+ </skin-path>
+
+</object>
