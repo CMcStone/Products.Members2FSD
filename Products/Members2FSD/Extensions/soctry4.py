@@ -10,9 +10,7 @@ def convert():
      target_contenttype = 'FSDPerson'
      site = getSite()
      peeps = site['people']
-     workflowTool = getToolByName(self.portal, "portal_workflow")
-     status = portal_workflow.getStatusOf("plone_workflow", item)
-     if status and status.get("review_state", None) <> "private":
+     
      
 
      items = peeps.listFolderContents(
@@ -20,7 +18,7 @@ def convert():
      fsd = site['Directory']
 
      for item in items:
-          middleName, firstName, lastName, classifications, jobTitles, education, department, bibliography, portrait, officePhone, email, OfficeCity, OfficePhone, OfficeState, OfficePostalCode, biography, userpref_ext_editor, officeRoom, officeHours, fullname, names = ('',)*21
+          middleName, firstName, lastName, classifications, jobTitles, education, department, bibliography, portrait, officePhone, email, OfficeCity, OfficePhone, OfficeState, OfficePostalCode, biography, userpref_ext_editor, officeRoom, officeHours, fullname, names, memcontent = ('',)*22
           id = item.getId()
           jobTitles = item.Description()
           if 'Staff' in item.Subject():
@@ -72,10 +70,11 @@ def convert():
           else:
                 raise ValueError, "fullname could not be parsed:" .format(fullname)
            
-          if item.hours <> 'N/A':
+          if officeHours <> 'N/A':
                 quarter = 'Fall 2013'
           else:
                 quarter = ''
+                
           if not id in fsd.objectIds():
           
                if classifications <> "":
@@ -102,7 +101,7 @@ def convert():
                          userpref_ext_editor=False )
                     
                     fsd[id].at_post_create_script()
-                    print "done for" + fullname
+                    print "made a person for" + fullname
                     
                      
                   
@@ -126,18 +125,23 @@ def convert():
                          OfficePostalCode='95616',
                          userpref_ext_editor=False)
                     fsd[id].at_post_create_script()
-                    print "done for" + fullname
+                    print "made a no class person for" + fullname
+                    
+               
                     
                if hasattr(fsd,id):
                    try:
                        fsd[id].setImage(portrait)
                    except:
                        print "image failed for %s" %id
-                   print "success for %s" % id 
+                   print "image success for %s" % id 
                else:
                    print "fail for %s" % id
+                
+#               if hasattr(fsd,id):
+#                    
                
-               Assign departments and specialties here
+ #              Assign departments and specialties here
                       
                     
      return "Done"
