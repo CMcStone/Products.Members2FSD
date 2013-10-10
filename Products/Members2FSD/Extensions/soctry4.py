@@ -27,7 +27,7 @@ def convert():
           elif 'Graduate Students' in item.Subject():
                classifications = 'graduate-students'
                department = 'sociology-graduate-students'
-          elif 'Affiliated Faculty' in item.Subject():
+          elif 'Affiliated' in item.Subject():
                classifications = 'affiliated-faculty'
                department = 'sociology-faculty'
           elif 'Emeriti' in item.Subject():
@@ -36,20 +36,24 @@ def convert():
           elif 'Faculty' in item.Subject():
                classifications = 'faculty'
                deparment = 'sociology-faculty'
-          elif 'Graduate Employees' in item.Subject():
+          elif 'Graduate Employee' in item.Subject():
                classifications = "graduate-employees"
                department = 'sociology-graduate-students'
-          elif 'Lecturers' in item.Subject():
+          elif 'Lecturer' in item.Subject():
                classifications = "lecturers" 
                department = 'sociology-faculty'
-          elif 'Postdoctorates' in item.Subject():
+          elif 'Postdoctorate' in item.Subject():
                classifications = 'postdoctorates'
-          elif 'Research Professors' in item.Subject():
+          elif 'Research Professor' in item.Subject():
                classifications = 'research-professors'
                department = 'sociology-faculty'
+          elif 'Graduate Group' in item.Subject():
+               classifications = 'graduate-group'
+               department = 'graduate-program'
           else:
                classifications = ""
-                             
+               department = ""
+          print department                  
           education = item.almaMater
           portrait = item.getPortrait()
           officePhone = item.getPhone()
@@ -88,7 +92,7 @@ def convert():
                          middleName=middleName,
                          lastName=lastName,
                          classifications=[classificationUID],
-                         department=[departmentUID],
+                         departments=[departmentUID],
                          email=email.strip(),
                          education=education,
                          OfficePhone=OfficePhone,
@@ -138,10 +142,9 @@ def convert():
                else:
                    print "fail for %s" % id
                 
-#               if hasattr(fsd,id):
-#                    
-               
- #              Assign departments and specialties here
+        
+             
+         
                       
                     
      return "Done"
