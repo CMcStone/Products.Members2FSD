@@ -15,7 +15,7 @@ def convert():
 
      items = peeps.listFolderContents(
         contentFilter={"portal_type": source_contenttype})
-     fsd = site['Directory']
+     fsd = site['directory']
 
      for item in items:
           middleName, firstName, lastName, classifications, jobTitles, education, department, bibliography, portrait, officePhone, email, OfficeCity, OfficePhone, OfficeState, OfficePostalCode, biography, userpref_ext_editor, officeRoom, officeHours, fullname, names, memcontent = ('',)*22
