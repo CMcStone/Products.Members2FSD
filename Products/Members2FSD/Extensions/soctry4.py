@@ -27,7 +27,7 @@ def convert():
           elif 'Graduate Students' in item.Subject():
                classifications = 'graduate-students'
                department = 'sociology-graduate-students'
-          elif 'Affiliated' in item.Subject():
+          elif 'Affiliated Faculty' in item.Subject():
                classifications = 'affiliated-faculty'
                department = 'sociology-faculty'
           elif 'Emeriti' in item.Subject():
@@ -39,10 +39,10 @@ def convert():
           elif 'Graduate Employee' in item.Subject():
                classifications = "graduate-employees"
                department = 'sociology-graduate-students'
-          elif 'Lecturer' in item.Subject():
+          elif 'Lecturers' in item.Subject():
                classifications = "lecturers" 
                department = 'sociology-faculty'
-          elif 'Postdoctorate' in item.Subject():
+          elif 'Postdoctorates' in item.Subject():
                classifications = 'postdoctorates'
           elif 'Research Professor' in item.Subject():
                classifications = 'research-professors'
@@ -58,7 +58,7 @@ def convert():
           portrait = item.getPortrait()
           officePhone = item.getPhone()
           email = item.getEmail()
-          biography = item.biography
+          biography = item.getBiography()
           userpref_ext_editor = False
           officeRoom = item.office
           officeHours = item.hours
@@ -98,7 +98,7 @@ def convert():
                          OfficePhone=OfficePhone,
                          officeRoom=officeRoom,
                          officeHours=officeHours,
-                         bibliograph=bibliography,
+                         biography=biography,
                          OfficeCity='Davis',
                          OfficeState='CA',
                          OfficePostalCode='95616',
@@ -123,7 +123,7 @@ def convert():
                          OfficePhone=OfficePhone,
                          officeRoom=officeRoom,
                          officeHours=officeHours,
-                         bibliograph=bibliography,
+                         biography=biography,
                          OfficeCity='Davis',
                          OfficeState='CA',
                          OfficePostalCode='95616',
