@@ -18,7 +18,7 @@ def convert():
      fsd = site['directory']
 
      for item in items:
-          middleName, firstName, lastName, classifications, jobTitles, education, department, bibliography, portrait, officePhone, email, OfficeCity, OfficePhone, OfficeState, OfficePostalCode, biography, userpref_ext_editor, officeRoom, officeHours, fullname, names, memcontent = ('',)*22
+          middleName, firstName, lastName, classifications, jobTitles, education, department, bibliography, portrait, OfficePhone, email, OfficeCity, OfficePhone, OfficeState, OfficePostalCode, biography, userpref_ext_editor, officeRoom, officeHours, fullname, names, memcontent = ('',)*22
           id = item.getId()
           jobTitles = item.Description()
           if 'Staff' in item.Subject():
@@ -56,7 +56,7 @@ def convert():
           print department                  
           education = item.almaMater
           portrait = item.getPortrait()
-          officePhone = item.getPhone()
+          OfficePhone = item.phone
           email = item.getEmail()
           biography = item.getBiography()
           userpref_ext_editor = False
@@ -88,12 +88,13 @@ def convert():
                     fsd.invokeFactory(
                          type_name='FSDPerson',
                          id=id,
+                         jobTitles=JobTitles,
                          firstName=firstName,
                          middleName=middleName,
                          lastName=lastName,
                          classifications=[classificationUID],
                          departments=[departmentUID],
-                         email=email.strip(),
+                         email=email,
                          education=education,
                          OfficePhone=OfficePhone,
                          officeRoom=officeRoom,
@@ -117,7 +118,8 @@ def convert():
                          firstName=firstName, 
                          middleName=middleName, 
                          lastName=lastName, 
-                         email=email.strip(),
+                         jobTitles=JobTitle,
+                         email=email,
                          portrait=portrait,
                          education=education,
                          OfficePhone=OfficePhone,
