@@ -3,7 +3,7 @@ import transaction
 
 
 
-def CopyFiles():
+def copystuff():
      site = getSite()
      peeps = site['people']
      memcontent = []
@@ -13,7 +13,7 @@ def CopyFiles():
 
      items = peeps.listFolderContents(
         contentFilter={"portal_type": source_contenttype})
-     fsd = site['Directory']
+     fsd = site['directory']
 
      for item in items:
           id = item.getId()
@@ -22,7 +22,7 @@ def CopyFiles():
             memcontent = site.people[id].objectIds()
             ref = site.people[id].manage_cutObjects(memcontent)
             site._p_jar.sync()
-            site.Directory[id].manage_pasteObjects(ref)
+            site.directory[id].manage_pasteObjects(ref)
             transaction.commit()
             print 'files copied'
           except:

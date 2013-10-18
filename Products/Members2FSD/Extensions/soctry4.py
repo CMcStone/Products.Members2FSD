@@ -1,8 +1,7 @@
 """
-from the News Item type, the new items will be content copies
-of their corresponding Pages (Documents)"""
 from zope.app.component.hooks import getSite
 from Products.CMFCore.utils import getToolByName
+import transaction
 
 def convert():
 
@@ -18,7 +17,7 @@ def convert():
      fsd = site['directory']
 
      for item in items:
-          middleName, firstName, lastName, classifications, jobTitles, education, department, bibliography, portrait, OfficePhone, email, OfficeCity, OfficePhone, OfficeState, OfficePostalCode, biography, userpref_ext_editor, officeRoom, officeHours, fullname, names, memcontent = ('',)*22
+          middleName, firstName, lastName, classifications, jobTitles, education, department, bibliography, portrait, officePhone, email, OfficeCity, OfficePhone, OfficeState, OfficePostalCode, biography, userpref_ext_editor, officeRoom, officeHours, fullname, names, memcontent = ('',)*22
           id = item.getId()
           jobTitles = item.Description()
           if 'Staff' in item.Subject():
@@ -35,7 +34,7 @@ def convert():
                department = 'sociology-faculty'
           elif 'Faculty' in item.Subject():
                classifications = 'faculty'
-               deparment = 'sociology-faculty'
+               department = 'sociology-faculty'
           elif 'Graduate Employee' in item.Subject():
                classifications = "graduate-employees"
                department = 'sociology-graduate-students'
@@ -44,6 +43,7 @@ def convert():
                department = 'sociology-faculty'
           elif 'Postdoctorates' in item.Subject():
                classifications = 'postdoctorates'
+               department = 'nones'
           elif 'Research Professor' in item.Subject():
                classifications = 'research-professors'
                department = 'sociology-faculty'
@@ -51,18 +51,21 @@ def convert():
                classifications = 'graduate-group'
                department = 'graduate-program'
           else:
-               classifications = ""
-               department = ""
+               classifications = 'none'
+               department = 'nones'
           print department                  
           education = item.almaMater
           portrait = item.getPortrait()
-          OfficePhone = item.phone
+          OfficePhone = item.getPhone()
           email = item.getEmail()
           biography = item.getBiography()
           userpref_ext_editor = False
           officeRoom = item.office
           officeHours = item.hours
           fullname = item.Title()
+          OfficeCity='Davis',
+          OfficeState='CA',
+          OfficePostalCode='95616',
           names = fullname.split(' ')
           if len(names) == 2:
                 firstName = names[0]
@@ -88,24 +91,24 @@ def convert():
                     fsd.invokeFactory(
                          type_name='FSDPerson',
                          id=id,
-                         jobTitles=JobTitles,
                          firstName=firstName,
                          middleName=middleName,
                          lastName=lastName,
                          classifications=[classificationUID],
                          departments=[departmentUID],
-                         email=email,
+                         email=email.strip(),
                          education=education,
+                         jobTitles=jobTitles,
                          OfficePhone=OfficePhone,
                          officeRoom=officeRoom,
                          officeHours=officeHours,
                          biography=biography,
-                         OfficeCity='Davis',
-                         OfficeState='CA',
-                         OfficePostalCode='95616',
-                         userpref_ext_editor=False )
+                         OfficeCity=OfficeCity,
+                         OfficeState=OfficeState,
+                         OfficePostalCode=OfficePostalCode )
                     
                     fsd[id].at_post_create_script()
+                    transaction.commit()
                     print "made a person for" + fullname
                     
                      
@@ -118,21 +121,20 @@ def convert():
                          firstName=firstName, 
                          middleName=middleName, 
                          lastName=lastName, 
-                         jobTitles=JobTitle,
-                         email=email,
+                         email=email.strip(),
                          portrait=portrait,
                          education=education,
+                         jobTitles=jobTitles,
                          OfficePhone=OfficePhone,
                          officeRoom=officeRoom,
                          officeHours=officeHours,
                          biography=biography,
-                         OfficeCity='Davis',
-                         OfficeState='CA',
-                         OfficePostalCode='95616',
-                         userpref_ext_editor=False)
+                         OfficeCity=OfficeCity,
+                         OfficeState=OfficeState,
+                         OfficePostalCode=OfficePostalCode)
                     fsd[id].at_post_create_script()
                     print "made a no class person for" + fullname
-                    
+                    transaction.commit()
                
                     
                if hasattr(fsd,id):
