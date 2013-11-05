@@ -12,6 +12,10 @@ Products.Members2FSD.egg-info/top_level.txt
 Products/Members2FSD/__init__.py
 Products/Members2FSD/interfaces.py
 Products/Members2FSD/Extensions/__init__.py
+Products/Members2FSD/Extensions/adddepartment.py
+Products/Members2FSD/Extensions/addspec.py
+Products/Members2FSD/Extensions/copyfiles.py
+Products/Members2FSD/Extensions/getcvs.py
 Products/Members2FSD/Extensions/plone_to_facstaffdir.py
 Products/Members2FSD/Extensions/socplonetofsd.py
 Products/Members2FSD/Extensions/soctry3.py
