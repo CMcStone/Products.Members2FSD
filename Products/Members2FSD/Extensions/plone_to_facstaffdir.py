@@ -142,7 +142,7 @@ def reset():
 from Products.Members2FSD.interfaces import IMemberConverter
 
 from Products.CMFCore.utils import getToolByName
-from zope.app.component.hooks import getSite
+from zope.component.hooks import getSite
 import transaction
 
 class memberConverter(object):
