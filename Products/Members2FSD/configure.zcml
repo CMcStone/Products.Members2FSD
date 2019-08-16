@@ -2,6 +2,8 @@
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            i18n_domain="Products.Members2FSD">
 		   
+   <include package=".browser" />
+		   
    <utility provides=".interfaces.IMemberConverter"
              factory=".Extensions.plone_to_facstaffdir.memberConverter" />
 		   
