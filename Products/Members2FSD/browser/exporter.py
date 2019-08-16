@@ -29,6 +29,7 @@ class CSVExport(BrowserView):
             'biography',
             'education',
             'websites',
+            'image',
 
         ]
 
@@ -41,6 +42,7 @@ class CSVExport(BrowserView):
 
         for person in people:
             pobj = person.getObject()
+            imageurl = "https://it.dss.ucdavis.edu/people/%s/image_normal"%(pobj.id)
             row = []
             row.append(pobj.id)
             row.append(pobj.firstName)
@@ -57,6 +59,7 @@ class CSVExport(BrowserView):
             row.append(pobj.biography)
             row.append(pobj.education)
             row.append(pobj.websites)
+            row.append(imageurl)
 
             writer.writerow(row)
         value = buffer.getvalue()
