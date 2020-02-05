@@ -19,3 +19,5 @@ Products/Members2FSD/Extensions/plone_to_facstaffdir.py
 Products/Members2FSD/Extensions/socplonetofsd.py
 Products/Members2FSD/Extensions/soctry3.py
 Products/Members2FSD/Extensions/soctry4.py
+Products/Members2FSD/browser/__init__.py
+Products/Members2FSD/browser/exporter.py

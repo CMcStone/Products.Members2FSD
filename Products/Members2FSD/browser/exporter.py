@@ -38,30 +38,38 @@ class CSVExport(BrowserView):
         site = getSite()
         catalog = getToolByName(site, 'portal_catalog')
 
-        people = catalog(portal_type='FSDPerson')
+        
+        targetDeptID = "yellow-cluster-staff"
+        department = catalog(portal_type='FSDDepartment', id=targetDeptID)
+        #for multiple departments, don't use this next part
+        deptobj = department[0].getObject()
+        duid = deptobj.UID()
+        people = catalog(getRawDepartments=duid, portal_type="FSDPerson")
+        
 
         for person in people:
-            pobj = person.getObject()
-            imageurl = "https://it.dss.ucdavis.edu/people/%s/image_normal"%(pobj.id)
-            row = []
-            row.append(pobj.id)
-            row.append(pobj.firstName)
-            row.append(pobj.middleName)
-            row.append(pobj.lastName)
-            row.append(pobj.suffix)
-            row.append(pobj.email)
-            row.append(pobj.jobTitles)
-            row.append(pobj.officeAddress)
-            row.append(pobj.officeCity)
-            row.append(pobj.officeState)
-            row.append(pobj.officePostalCode)
-            row.append(pobj.officePhone)
-            row.append(pobj.biography)
-            row.append(pobj.education)
-            row.append(pobj.websites)
-            row.append(imageurl)
+            
+                pobj = person.getObject()
+                imageurl = "https://it.dss.ucdavis.edu/people/%s/image_normal"%(pobj.id)
+                row = []
+                row.append(pobj.id)
+                row.append(pobj.firstName)
+                row.append(pobj.middleName)
+                row.append(pobj.lastName)
+                row.append(pobj.suffix)
+                row.append(pobj.email)
+                row.append(pobj.jobTitles)
+                row.append(pobj.officeAddress)
+                row.append(pobj.officeCity)
+                row.append(pobj.officeState)
+                row.append(pobj.officePostalCode)
+                row.append(pobj.officePhone)
+                row.append(pobj.biography)
+                row.append(pobj.education)
+                row.append(pobj.websites)
+                row.append(imageurl)
 
-            writer.writerow(row)
+                writer.writerow(row)
         value = buffer.getvalue()
 
         if not encoding:
