@@ -39,7 +39,7 @@ class CSVExport(BrowserView):
         catalog = getToolByName(site, 'portal_catalog')
 
         
-        targetDeptID = "yellow-cluster-staff"
+        targetDeptID = "green-cluster-staff"
         department = catalog(portal_type='FSDDepartment', id=targetDeptID)
         #for multiple departments, don't use this next part
         deptobj = department[0].getObject()
