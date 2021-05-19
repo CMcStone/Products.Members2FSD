@@ -6,8 +6,7 @@ version = '0.1'
 setup(name='Products.Members2FSD',
       version=version,
       description="scripts for managing people",
-      long_description=open("README.rst").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+      long_description=open("README.rst").read() + "\n" + ("HISTORY.txt").read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
